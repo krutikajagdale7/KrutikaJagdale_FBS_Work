@@ -1,0 +1,99 @@
+
+SQL Test Set B - Answers
+
+1. Retrieve the names of all customers from the 'Customers' table, sorted in alphabetical order.
+Answer:
+SELECT customer_name FROM Customers ORDER BY customer_name ASC;
+
+2. Fetch the top 10 most expensive products from the 'Products' table.
+Answer:
+SELECT * FROM Products ORDER BY price DESC LIMIT 10;
+
+3. Write a query to get the second-highest salary from the 'Employees' table.
+Answer:
+SELECT MAX(salary) AS second_highest_salary
+FROM Employees
+WHERE salary < (SELECT MAX(salary) FROM Employees);
+
+4. Get the total count of customers from each city in the 'Customers' table.
+Answer:
+SELECT city, COUNT(*) AS total_customers
+FROM Customers
+GROUP BY city;
+
+5. Retrieve department-wise total salary from the 'Employees' table but only include
+departments where the total salary is greater than 2,00,000.
+Answer:
+SELECT department_id, SUM(salary) AS total_salary
+FROM Employees
+GROUP BY department_id
+HAVING SUM(salary) > 200000;
+
+6. Extract only the last four characters of the 'phone_number' column and first three characters
+from 'customerName' column from the 'Customers' table.
+Answer:
+SELECT LEFT(customer_name, 3) AS short_name, RIGHT(phone_number, 4) AS last_digits
+FROM Customers;
+
+7. Write a query to retrieve products where the 'product_name' contains "Pro".
+Answer:
+SELECT * FROM Products WHERE product_name LIKE '%Pro%';
+
+8. Fetch the total number of students per course from the 'Students' table, only for courses that
+have at least 30 students enrolled.
+Answer:
+SELECT course_id, COUNT(*) AS total_students
+FROM Students
+GROUP BY course_id
+HAVING COUNT(*) >= 30;
+
+9. Write an SQL query to find the number of orders placed in each month of the year.
+Answer:
+SELECT MONTH(order_date) AS month, COUNT(*) AS total_orders
+FROM Orders
+GROUP BY MONTH(order_date);
+
+10. Get the highest and lowest salary per department from the 'Employees' table.
+Answer:
+SELECT department_id, MAX(salary) AS highest_salary, MIN(salary) AS lowest_salary
+FROM Employees
+GROUP BY department_id;
+
+11. What does the following query return?
+SELECT SUBSTRING('Database', 1, 4);
+Answer: a) Data
+
+12. Which clause is used to sort the results in descending order?
+Answer: a) ORDER BY DESC
+
+13. What is the default sorting order of 'ORDER BY' if no direction (ASC/DESC) is specified?
+Answer: a) ASC
+
+14. What will be the output of the following query?
+SELECT ROUND(15.678, 2);
+Answer: b) 15.68
+
+15. Which SQL function is used to count the number of rows in a table?
+Answer: b) COUNT()
+
+16. Question:
+SQL Query to find the average order value (total_amount) for each customer.
+Only include customers who have made more than 2 orders.
+
+Answer:
+SELECT c.customer_id, c.customer_name, AVG(o.total_amount) AS avg_order_value
+FROM Customers c
+JOIN Orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+HAVING COUNT(o.order_id) > 2;
+
+17. Question:
+SQL Query to find the number of sales made for each product.
+Only include products with more than 50 sales.
+
+Answer:
+SELECT p.product_id, p.product_name, COUNT(s.sale_id) AS sales_count
+FROM Products p
+JOIN Sales s ON p.product_id = s.product_id
+GROUP BY p.product_id, p.product_name
+HAVING COUNT(s.sale_id) > 50;
