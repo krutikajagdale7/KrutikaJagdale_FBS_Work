@@ -1,0 +1,75 @@
+body{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+.calcicontainer{
+    display:grid;
+    grid-template-columns: 100px 100px 100px;
+    gap:10px;
+    padding:15px;
+    background:#222;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+#inpdiv{
+    grid-column: span 3;
+}
+
+#inp{
+    width:100%;
+    height:60px;
+    font-size:24px;
+    text-align:right;
+    padding:10px;
+    border:none;
+    outline:none;
+    border-radius:8px;
+    background:#000;
+    color:#0f0;
+}
+
+.btns{
+    display:flex;
+}
+
+.btns button{
+    width:100%;
+    height:60px;
+    font-size:20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#444;
+    color:white;
+    transition:0.2s;
+}
+
+.btns button:hover{
+    background:#666;
+}
+
+.btns button:active{
+    transform:scale(0.95);
+}
+
+/* Operator buttons */
+.btns button[onclick*="+"] ,
+.btns button[onclick*="-"] ,
+.btns button[onclick*="*"] ,
+.btns button[onclick*="/"] {
+    background:#ff9500;
+}
+
+.btns button[onclick*="="]{
+    background:#28a745;
+}
+
+.btns button[onclick*="clearScreen"]{
+    background:#dc3545;
+}
